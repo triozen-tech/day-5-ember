@@ -1,0 +1,373 @@
+/* Ember Roast: brand styles. Espresso pages (theme) alternate with cream "paper" sections (.paper). */
+
+:root {
+  --espresso: #1b120c;
+  --crema: #f4e9d8;
+  --copper: #e0913f;
+  --copper-deep: #985018;
+  --paper: #f2e7d6;
+  --kraft: #c8a57a;
+}
+
+body {
+  font-weight: 350;
+  letter-spacing: 0.005em;
+}
+
+/* Fraunces: soft, slightly wonky, big optical size */
+.font-display {
+  font-weight: 380;
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-optical-sizing: auto;
+}
+.highlight {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 330;
+}
+
+/* Small caps label in Outfit, with a copper ember dot */
+.eyebrow {
+  font-family: var(--font-body-family), sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 99px;
+  background: var(--copper);
+  box-shadow: 0 0 10px 2px rgba(224, 145, 63, 0.55);
+}
+
+/* Cream paper sections */
+.paper {
+  --bg: #f2e7d6;
+  --surface: #fbf5ec;
+  --text: #2a1a10;
+  --muted: #6d5744;
+  --accent: #985018;
+  --accent-text: #fbf5ec;
+  --line: #dccab1;
+  background: var(--bg);
+  color: var(--text);
+}
+.band-copper {
+  --bg: #e0913f;
+  --text: #1b120c;
+  --muted: #3d2616;
+  --accent: #1b120c;
+  --accent-text: #f4e9d8;
+  --line: rgba(27, 18, 12, 0.25);
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Buttons: soft pills */
+.btn {
+  padding: 1rem 1.6rem;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+.btn-outline {
+  border-color: color-mix(in srgb, currentColor 40%, transparent);
+  color: var(--text);
+}
+
+/* Arch-top frame (C6): semicircle top, soft bottom corners */
+.arch {
+  border-radius: 9999px 9999px 14px 14px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.arch-line {
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  border-radius: 9999px 9999px 14px 14px;
+}
+
+/* Printed menu line: name ······ price */
+.menu-line {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 12px;
+}
+.menu-line .leader {
+  border-bottom: 2px dotted color-mix(in srgb, var(--muted) 55%, transparent);
+  transform: translateY(-5px);
+}
+
+/* Small copper price tag */
+.price-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 99px;
+  background: var(--copper);
+  color: var(--espresso);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Receipt paper with a zigzag torn bottom */
+.receipt {
+  background: #f7efe2;
+  color: #2a1a10;
+  --zz: 10px;
+  -webkit-mask:
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / calc(var(--zz) * 2) 100%;
+  mask:
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / calc(var(--zz) * 2) 100%;
+  padding-bottom: calc(var(--zz) + 18px);
+}
+.receipt-rule {
+  border-top: 1px dashed rgba(42, 26, 16, 0.35);
+}
+
+/* Outline wordmark (footer, M24) */
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--copper) 70%, transparent);
+}
+
+/* Soft amber glow behind photos */
+.amber-glow {
+  background: radial-gradient(closest-side, rgba(224, 145, 63, 0.28), transparent 70%);
+  filter: blur(20px);
+}
+
+/* Hide scrollbars on sideways phone rows */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Pinned sections: tall wrapper + sticky stage. ?static=1 shows them as one normal screen. */
+.pin-outer {
+  position: relative;
+}
+.pin-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+html.is-static .pin-outer {
+  height: auto !important;
+}
+html.is-static .pin-stage {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Hero "wipe the steamy window" (M19): .hero-fog holds a pre-blurred, darkened copy of the video's first frame
+   (the video waits on that frame until the glass is clear), a condensation haze and droplets.
+   Its mask is 3 screens wide: fog on the right, clear glass on the left, a soft curved edge between (a hand
+   sweep). SteamHero.tsx moves the mask from 100% (all fog) to 0% (all clear). */
+.hero-fog {
+  --wipe-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 100' preserveAspectRatio='none'%3E%3Cfilter id='f' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='1.6'/%3E%3C/filter%3E%3Cpath d='M138 -10 C 176 18, 184 62, 146 110 L 320 110 L 320 -10 Z' fill='%23fff' filter='url(%23f)'/%3E%3C/svg%3E");
+  -webkit-mask-image: var(--wipe-mask);
+  mask-image: var(--wipe-mask);
+  -webkit-mask-size: 300% 100%;
+  mask-size: 300% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: 91% 0;
+  mask-position: 91% 0;
+}
+.fog-noise {
+  opacity: 0.32;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.03' numOctaves='3' seed='4'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.6 -0.3'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 480px 480px;
+}
+
+/* The Pour: recipe steps light up as the brew reaches them (ThePour.tsx toggles .is-on) */
+.pour-step {
+  opacity: 0.38;
+  transition: opacity 0.45s ease;
+}
+.pour-step .step-dot {
+  background: #6d5744;
+  box-shadow: none;
+  transition: background 0.45s ease, box-shadow 0.45s ease;
+}
+.pour-step.is-on {
+  opacity: 1;
+}
+.pour-step.is-on .step-dot {
+  background: var(--copper);
+  box-shadow: 0 0 10px var(--copper);
+}
+
+/* Loader: letters start below their mask (before JS runs), GSAP raises them */
+.ll-letter {
+  transform: translateY(110%);
+}
+
+/* Hero captions: the italic word stays crema (copper vanishes on the copper machine) */
+.hero-caption .highlight {
+  color: var(--crema);
+}
+
+/* Roast dial: a clean swap between stops. The old panel slides up and fades out first (0.25 s); the new one
+   waits for it, then slides in (0.4 s), so two stops never overlap. */
+.roast-panel {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease-in, transform 0.25s ease-in;
+}
+.roast-panel.is-on {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.4s ease-out 0.26s, transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) 0.26s;
+}
+
+/* Footer embers: drift up, flicker and fade (EmberFooter.tsx) */
+.ember {
+  box-shadow: 0 0 8px 2px rgba(242, 165, 78, 0.6);
+  opacity: 0;
+  animation: ember-rise linear infinite;
+}
+@keyframes ember-rise {
+  0% { transform: translate(0, 0) scale(1); opacity: 0; }
+  15% { opacity: 0.9; }
+  60% { opacity: 0.6; }
+  100% { transform: translate(24px, -260px) scale(0.3); opacity: 0; }
+}
+html.is-static .ember {
+  animation: none;
+  opacity: 0;
+}
+
+/* ?static=1: the statement does not overlap the hero */
+html.is-static .statement {
+  margin-top: 0;
+}
+
+/* Bigger review receipts: bigger zigzag edge */
+.receipt.receipt-lg {
+  --zz: 13px;
+}
+
+/* ---------- Round 4 details ---------- */
+
+/* Menu button: copper fills in from the left on hover (and once by itself in record mode) */
+.menu-btn-fill {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.menu-btn > span.relative {
+  transition: color 0.4s ease;
+}
+.menu-btn:hover .menu-btn-fill,
+.menu-btn.is-demo .menu-btn-fill {
+  transform: scaleX(1);
+}
+.menu-btn:hover > span.relative,
+.menu-btn.is-demo > span.relative {
+  color: var(--espresso);
+}
+
+/* Text links: a copper underline draws left to right on hover (.is-demo = record mode) */
+.er-link {
+  background: linear-gradient(var(--copper), var(--copper)) left bottom / 0% 1.5px no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 0.5s cubic-bezier(0.65, 0, 0.35, 1), color 0.3s ease;
+}
+.er-link:hover,
+a:hover > .er-link,
+.menu-link a:hover .er-link,
+.er-link.is-demo {
+  background-size: 100% 1.5px;
+  color: var(--text);
+}
+
+/* Cursor (engine Cursor.tsx, restyled here): just the small copper dot; over a labelled area the ring becomes a
+   copper disc with the label ("Pour", "Swipe", "Flip") */
+.cursor-layer > div:first-child {
+  border-color: transparent;
+}
+.cursor-layer > div:first-child > span {
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.cursor-layer > div:last-child {
+  width: 8px;
+  height: 8px;
+  margin: -1px 0 0 -1px;
+  background: var(--copper);
+  box-shadow: 0 0 10px rgba(224, 145, 63, 0.7);
+}
+
+/* Arch cards lift with a soft shadow while tilted (useTilt.ts) */
+.tilt-card {
+  transition: box-shadow 0.6s ease;
+  will-change: transform;
+}
+.tilt-card.is-lifted {
+  box-shadow: 0 34px 60px -24px rgba(27, 18, 12, 0.55);
+}
+
+/* Menu board: the price flips over when its row is hovered (.flip-demo = record mode) */
+.menu-price {
+  display: inline-block;
+  transform-style: preserve-3d;
+}
+.menu-page li:hover .menu-price,
+.menu-page li.flip-demo .menu-price {
+  animation: price-flip 0.6s cubic-bezier(0.3, 0.7, 0.3, 1);
+}
+@keyframes price-flip {
+  0% { transform: perspective(300px) rotateX(0); }
+  45% { transform: perspective(300px) rotateX(90deg); opacity: 0.4; }
+  55% { transform: perspective(300px) rotateX(-90deg); opacity: 0.4; }
+  100% { transform: perspective(300px) rotateX(0); opacity: 1; }
+}
+
+/* Ember Club button: a slow breathing amber glow */
+.club-btn {
+  animation: club-breathe 2.8s ease-in-out infinite;
+}
+@keyframes club-breathe {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 196, 120, 0), 0 10px 24px -10px rgba(27, 18, 12, 0.5); }
+  50% { box-shadow: 0 0 0 6px rgba(255, 196, 120, 0.28), 0 0 34px 8px rgba(255, 176, 86, 0.55); }
+}
+html.is-static .club-btn {
+  animation: none;
+}
+
+/* The bean that flies into the bag */
+.flying-bean {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 96;
+  width: 24px;
+  height: 30px;
+  pointer-events: none;
+}
+
+/* Phone pass: buttons and price tags at least 14px */
+@media (max-width: 767px) {
+  .btn,
+  .price-tag {
+    font-size: 14px;
+  }
+}
