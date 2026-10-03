@@ -1,7 +1,6 @@
 # The repo shows only the current project (see CLAUDE.md).
 # Old sites live in their own day folders; these stay local and never go into git.
 archive/
-raw/
 docs/SITES-LOG.md
 recordings/
 
@@ -16,3 +15,8 @@ next-env.d.ts
 
 # other tools' local worktrees (they hold copies of older sites)
 .kilo/
+
+# recordings, final reels and venvs stay local
+recordings/
+*.mov
+.venv*/
