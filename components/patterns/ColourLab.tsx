@@ -53,7 +53,7 @@ const css = (swap: number) => `
 @keyframes cl-in { from { opacity: 0; transform: translateX(10px) skewX(var(--sk, 0deg)); } to { opacity: 1; transform: translateX(0) skewX(var(--sk, 0deg)); } }
 .cl-float { animation: cl-float 3.6s ease-in-out infinite alternate; }
 @keyframes cl-float { from { transform: translate3d(0,-1.2%,0) rotate(-1.5deg); } to { transform: translate3d(0,1.2%,0) rotate(.5deg); } }
-@media (prefers-reduced-motion: reduce) { .cl-float { animation: none; } }
+html.is-static { .cl-float { animation: none; } }
 `;
 
 export default function ColourLab({

@@ -22,7 +22,7 @@ const css = `
 @keyframes sp-tap { from { opacity: 1; transform: scale(.7); } to { opacity: 0; transform: scale(1.25); } }
 .sp-dot { animation: sp-dot 1.4s ease-in-out infinite; }
 @keyframes sp-dot { 50% { opacity: .25; } }
-@media (prefers-reduced-motion: reduce) { .sp-dot { animation: none; } }
+html.is-static { .sp-dot { animation: none; } }
 `;
 
 const addToBag = () => window.dispatchEvent(new Event("bag:add"));
